@@ -1,4 +1,4 @@
-import { genSalt, hash } from "bcrypt";
+import { compare, genSalt, hash } from "bcrypt";
 import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema(
@@ -23,6 +23,14 @@ userSchema.pre("save", async function (next) {
     throw error;
   }
 });
+
+userSchema.methods.comparePassword = async function (password) {
+  try {
+    return await compare(password, this.password);
+  } catch (error) {
+    throw error;
+  }
+};
 
 const UserModel = models.User || model("User", userSchema);
 

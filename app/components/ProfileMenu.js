@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import useAuth from "../../hooks/useAuth";
+import SignOutButton from "./SignOutButton";
 
 export default function ProfileMenu({ menuItems }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,10 +74,12 @@ export default function ProfileMenu({ menuItems }) {
         ) : null}
 
         <MenuItem>
-          <p className="flex items-center gap-2 rounded">
-            <PowerIcon className="h-4 w-4" />
-            <span>Sign Out</span>
-          </p>
+          <SignOutButton>
+            <p className="flex items-center gap-2 rounded">
+              <PowerIcon className="h-4 w-4" />
+              <span>Sign Out</span>
+            </p>
+          </SignOutButton>
         </MenuItem>
       </MenuList>
     </Menu>
